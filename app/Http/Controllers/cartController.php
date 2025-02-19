@@ -11,6 +11,20 @@ class cartController extends Controller
 {
 
     use ApiResponseTrait;
+
+    public function index()
+    {
+        $userId = auth()->id();
+
+        $cartItems = Cart::where('user_id', $userId)->with('product')->get();
+
+        if ($cartItems->isEmpty()) {
+            return $this->errorResponse('Your cart is empty', 404);
+        }
+
+        return $this->successResponse($cartItems, 'Cart products retrieved successfully');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
