@@ -6,8 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-
-class NotificationRequest extends FormRequest
+class VerifyPhoneRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,8 @@ class NotificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'   => 'required|string',
-            'body'    => 'required|string'
+            'Phone' => 'required',
+            'phone_otp' => 'required',
         ];
     }
 
