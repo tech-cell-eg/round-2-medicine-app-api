@@ -14,7 +14,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/send-notification', [NotificationController::class, 'sendNotification']);
     Route::get('/categories', [categoryController::class, 'index']);
     Route::get('/products', [productController::class, 'index']);
-    Route::get('/products/{id}', [productController::class, 'show']);
+    Route::get('/products/{$id}', [productController::class, 'show']);
     Route::post('cart/add' , [cartController::class , 'store']);
     Route::get('/cart', [CartController::class, 'index']);
 });
