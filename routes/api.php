@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/notifications', [NotificationController::class, 'getNotifications']);
-Route::get('/categories', [categoryController::class, 'index']);
 Route::post('/send-notification', [NotificationController::class, 'sendNotification']);
 Route::get('/products', [productController::class, 'index']);
 Route::get('/products/{$id}', [productController::class, 'show']);
@@ -18,6 +17,7 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::post('verify-phone', [UserController::class, 'verifyPhoneOtp']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/categories', [categoryController::class, 'index']);
 });
 
 
