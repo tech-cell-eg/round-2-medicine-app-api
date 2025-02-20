@@ -26,7 +26,8 @@ class NotificationController extends Controller
 
     public function getNotifications()
 {
-    $notifications = auth()->user()->notifications; 
+    $user = \App\Models\User::find(5);
+    $notifications = $user->notifications;
 
     return $this->successResponse($notifications, 'Notifications retrieved successfully');
 }
