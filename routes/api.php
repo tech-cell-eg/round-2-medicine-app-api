@@ -14,7 +14,7 @@ Route::post('verify-phone', [UserController::class, 'verifyPhoneOtp']);
 Route::get('/products', [productController::class, 'index']);
 Route::get('/products/{$id}', [productController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories/{category}', [productController::class, 'listCategoryProducts']);
+Route::get('/categories/{categoryId}', [productController::class, 'listCategoryProducts']);
 Route::get('/sub-categories/{name}', [productController::class, 'listSubCategoryProducts']);
 Route::post('cart/add', [cartController::class, 'store']);
 Route::get('/cart', [CartController::class, 'index']);

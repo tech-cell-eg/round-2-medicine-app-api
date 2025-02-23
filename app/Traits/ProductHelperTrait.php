@@ -37,7 +37,7 @@ trait ProductHelperTrait
 
         return response()->json([
             'sub_category' => $subCategory->name,
-            'products' => $subCategory->products->pluck('name')->toArray()
+            'products' => $subCategory->products
         ]);
     }
 }
