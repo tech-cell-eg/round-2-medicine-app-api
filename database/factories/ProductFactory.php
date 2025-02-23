@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -16,7 +17,8 @@ class ProductFactory extends Factory
             'ingredients' => $this->faker->words(5, true),
             'expiry_date' => $this->faker->dateTimeBetween('now', '+2 years')->format('Y-m-d'),
             'brand_name' => $this->faker->company(),
-            'rating' => $this->faker->randomFloat(1, 0, 5), 
-        ];
+            'rating' => $this->faker->randomFloat(1, 0, 5),
+            'sub_category_id' => SubCategory::inRandomOrder()->first()->id ?? 1,
+        ];        
     }
 }

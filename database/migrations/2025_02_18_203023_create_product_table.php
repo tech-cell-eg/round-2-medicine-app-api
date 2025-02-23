@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('expiry_date');
             $table->string('brand_name');
             $table->decimal('rating', 3, 1)->default(0);
+            $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

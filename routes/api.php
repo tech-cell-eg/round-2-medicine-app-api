@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/notifications', [NotificationController::class, 'getNotifications']);
 Route::post('/send-notification', [NotificationController::class, 'sendNotification']);
+Route::post('verify-phone', [UserController::class, 'verifyPhoneOtp']);
 Route::get('/products', [productController::class, 'index']);
 Route::get('/products/{$id}', [productController::class, 'show']);
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/{category}', [productController::class, 'listCategoryProducts']);
+Route::get('/sub-categories/{name}', [productController::class, 'listSubCategoryProducts']);
 Route::post('cart/add', [cartController::class, 'store']);
 Route::get('/cart', [CartController::class, 'index']);
-Route::post('verify-phone', [UserController::class, 'verifyPhoneOtp']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/categories', [categoryController::class, 'index']);
-});
+
+
 
 

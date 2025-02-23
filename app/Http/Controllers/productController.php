@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubCategoryRequest;
 use App\Models\Product;
 use App\Traits\ApiResponseTrait;
+use App\Traits\ProductHelperTrait;
 use Illuminate\Http\Request;
 
 class productController extends Controller
 {
     use ApiResponseTrait;
+    use ProductHelperTrait;
 
     public function index(){
         $products = Product::all();
@@ -30,4 +33,14 @@ class productController extends Controller
 
         return $this->successResponse($product, "Product details retrieved successfully");
     }
+
+        public function listCategoryProducts($categoryId)
+        {
+            return $this->getCategoryWithProducts($categoryId);
+        }
+    
+        public function listSubCategoryProducts($subCategoryName)
+        {
+            return $this->getSubCategoryWithProductsByName($subCategoryName);
+        }
 }

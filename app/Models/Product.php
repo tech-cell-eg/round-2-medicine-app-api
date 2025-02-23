@@ -18,11 +18,17 @@ class Product extends Model
         'expiry_date',
         'brand_name',
         'rating',
+        'sub_category_id'
     ];
 
     public function carts()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function subCategory()
+    {
+        return $this->belongsTo(SubCategory::class);
     }
 
 }
