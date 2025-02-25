@@ -28,4 +28,6 @@ class UserController extends Controller
             return response()->json(['message' => 'Invalid OTP'], 400);
         }
     }
+
+    
 }
