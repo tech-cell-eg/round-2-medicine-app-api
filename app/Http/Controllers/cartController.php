@@ -29,11 +29,11 @@ class cartController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'user_id'=> 'required|integer|exists:user,id'
+            'product_id' => 'required|exists:product,id',
+            'user_id'=> 'required|integer|exists:users,id'
         ]);
 
-        $userId =  User::find($request->user_id); 
+        $userId = $userId = User::find($request->user_id)?->id;
         $product = Product::find($request->product_id);
 
         if (!$product) {

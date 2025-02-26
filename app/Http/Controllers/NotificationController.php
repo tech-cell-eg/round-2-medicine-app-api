@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NotificationRequest;
+use App\Models\User;
 use App\Notifications\NewMessageNotification;
 use App\Traits\ApiResponseTrait;
 use Auth;
@@ -24,9 +25,10 @@ class NotificationController extends Controller
         return $this->successResponse(null, 'Notification sent successfully');
     }
 
-    public function getNotifications()
+    public function getNotifications($id)
 {
-    $notifications = auth()->user()->notifications; 
+    $user = User::find($id);
+    $notifications = $user->notifications; 
 
     return $this->successResponse($notifications, 'Notifications retrieved successfully');
 }

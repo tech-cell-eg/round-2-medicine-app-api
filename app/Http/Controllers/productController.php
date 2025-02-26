@@ -68,4 +68,39 @@ class productController extends Controller
 
         return view('edit-product' , compact('product' ,  'subCategories'));
     }
+
+    public function update(Request $request, $id)
+{
+    
+    $product = Product::find($id);
+
+    $validatedData = $request->validate([
+        'name' => 'string|max:255',
+        'description' => 'string',
+        'price' => 'numeric|min:0',
+        'product_details' => 'string|nullable',
+        'ingredients' => 'string|nullable',
+        'expiry_date' => 'date|nullable',
+        'brand_name' => 'string|max:255|nullable',
+        'rating' => 'numeric|min:0|max:5',
+        'sub_category_id' => 'exists:sub_categories,id',
+        'sizes' => 'array', 
+        'sizes.*.size' => 'string',
+        'sizes.*.price' => 'numeric|min:0',
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048' 
+    ]);
+
+    // تحديث بيانات المنتج
+    $product->update($validatedData);
+
+    // تحديث الصورة إذا تم رفع صورة جديدة
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('products', 'public');
+        $product->image = $imagePath;
+        $product->save();
+    }
+
+    return $this->successResponse($product, "Product updated successfully");
+}
+
 }

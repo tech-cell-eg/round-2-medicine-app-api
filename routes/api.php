@@ -8,7 +8,7 @@ use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/notifications', [NotificationController::class, 'getNotifications']);
+Route::get('/notifications/{id}', [NotificationController::class, 'getNotifications']);
 Route::post('/send-notification', [NotificationController::class, 'sendNotification']);
 Route::post('verify-phone', [UserController::class, 'verifyPhoneOtp']);
 Route::get('/products', [productController::class, 'index']);
