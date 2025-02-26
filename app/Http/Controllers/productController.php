@@ -18,7 +18,7 @@ class productController extends Controller
 
     public function index()
     {
-        $products = Product::with('comments')->get();
+        $products = Product::all();
         
         if ($products->isEmpty()) {
             return $this->errorResponse("No products found", 404);
@@ -29,7 +29,7 @@ class productController extends Controller
 
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('comments')->find($id);
 
         if (!$product) {
             return $this->errorResponse("Product not found", 404);

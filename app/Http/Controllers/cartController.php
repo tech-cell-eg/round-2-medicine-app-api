@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,9 @@ class cartController extends Controller
 
     use ApiResponseTrait;
 
-    public function index()
+    public function index($id)
     {
-        $userId = auth()->id();
+        $userId = User::find($id);
 
         $cartItems = Cart::where('user_id', $userId)->with('product')->get();
 
@@ -29,9 +30,10 @@ class cartController extends Controller
     {
         $request->validate([
             'product_id' => 'required|exists:products,id',
+            'user_id'=> 'required|integer|exists:user,id'
         ]);
 
-        $userId = auth()->id(); 
+        $userId =  User::find($request->user_id); 
         $product = Product::find($request->product_id);
 
         if (!$product) {
@@ -56,4 +58,19 @@ class cartController extends Controller
         }
 
     }
+
+    public function checkout($id)
+{
+    $user = User::find($id);
+    
+    if (!$user) {
+        return $this->errorResponse("User not authenticated", 401);
+    }
+
+
+    $user->cart()->delete();
+
+    return $this->successResponse([], "Cart cleared successfully");
+}
+
 }

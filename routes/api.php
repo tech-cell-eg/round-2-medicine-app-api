@@ -12,7 +12,7 @@ Route::get('/notifications', [NotificationController::class, 'getNotifications']
 Route::post('/send-notification', [NotificationController::class, 'sendNotification']);
 Route::post('verify-phone', [UserController::class, 'verifyPhoneOtp']);
 Route::get('/products', [productController::class, 'index']);
-Route::get('/products/{$id}', [productController::class, 'show']);
+Route::get('/products/{id}', [productController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{categoryId}', [productController::class, 'listCategoryProducts']);
 Route::get('/sub-categories/{name}', [productController::class, 'listSubCategoryProducts']);
