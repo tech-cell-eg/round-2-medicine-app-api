@@ -15,9 +15,9 @@ class cartController extends Controller
 
     public function index($id)
     {
-        $userId = User::find($id);
+        $user = User::find($id);
 
-        $cartItems = Cart::where('user_id', $userId)->with('product')->get();
+        $cartItems = Cart::where('user_id', $user->id)->with('product')->get();
 
         if ($cartItems->isEmpty()) {
             return $this->errorResponse('Your cart is empty', 404);

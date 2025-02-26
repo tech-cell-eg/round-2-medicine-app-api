@@ -17,7 +17,7 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{categoryId}', [productController::class, 'listCategoryProducts']);
 Route::get('/sub-categories/{name}', [productController::class, 'listSubCategoryProducts']);
 Route::post('cart/add', [cartController::class, 'store']);
-Route::get('/cart', [CartController::class, 'index']);
+Route::get('/cart/{id}', [CartController::class, 'index']);
 Route::post('/checkout/{id}', [CartController::class, 'checout']);
 
 
