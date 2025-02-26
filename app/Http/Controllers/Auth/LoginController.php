@@ -41,19 +41,19 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    public function login(Request $request)
-    {
-        $user = \App\Models\User::where('email', $request->email)->first();
+    // public function login(Request $request)
+    // {
+    //     $user = \App\Models\User::where('email', $request->email)->first();
     
-        if (!$user) {
-            return "User not found";
-        }
+    //     if (!$user) {
+    //         return "User not found";
+    //     }
     
-        if (!Hash::check($request->password, $user->password)) {
-            return "Wrong password";
-        }
+    //     if (!Hash::check($request->password, $user->password)) {
+    //         return "Wrong password";
+    //     }
     
-        Auth::login($user);
-        return redirect('/home');
-    } 
+    //     Auth::login($user);
+    //     return redirect('/home');
+    // } 
 }

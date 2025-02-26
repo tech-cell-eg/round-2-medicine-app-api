@@ -14,11 +14,11 @@ class ProductFactory extends Factory
             'description' => $this->faker->sentence(),
             'price' => $this->faker->numberBetween(10, 500),
             'old_price' => $this->faker->numberBetween(500, 1000),
-            'sizes' => [
+            'sizes' => json_encode([
                 ['price' => $this->faker->numberBetween(50, 200), 'size' => '500 pellets'],
                 ['price' => $this->faker->numberBetween(200, 400), 'size' => '110 pellets'],
                 ['price' => $this->faker->numberBetween(400, 600), 'size' => '300 pellets']
-            ],
+            ]),
             'product_details' => $this->faker->sentence(),
             'ingredients' => $this->faker->words(5, true),
             'expiry_date' => $this->faker->dateTimeBetween('now', '+2 years')->format('Y-m-d'),

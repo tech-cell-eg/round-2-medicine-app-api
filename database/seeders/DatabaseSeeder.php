@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-        Notification::factory(10)->create();
-        Category::factory(10)->create();
-        SubCategory::factory(20)->create();
+        // User::factory(10)->create();
+        // Notification::factory(10)->create();
+        // Category::factory(10)->create();
+        // SubCategory::factory(20)->create();
         Product::factory(50)->create();
-        Cart::factory(10)->create();
-        Comment::factory(100)->create();
+        // Cart::factory(10)->create();
+        // Comment::factory(100)->create();
         // $permissions = [
         //     'create_products', 'edit_products', 'delete_products', 'view_products',
         //     'create_users', 'edit_users', 'delete_users', 'view_users',
