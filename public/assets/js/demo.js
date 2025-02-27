@@ -161,3 +161,19 @@ $(".mapcontainer").mapael({
 				}
 			},
 		});
+
+
+document.addEventListener("DOMContentLoaded", function() { 
+    var chartElement = document.querySelector(".ct-chart");
+    
+    if (chartElement) { 
+        new Chartist.Line(".ct-chart", { 
+            labels: ['Jan', 'Feb', 'Mar'], 
+            series: [[5, 10, 15]] 
+        }, { 
+            plugins: [Chartist.plugins.tooltip()] 
+        }); 
+    } else { 
+        console.warn("Chart element not found! Skipping Chartist initialization."); 
+    } 
+});

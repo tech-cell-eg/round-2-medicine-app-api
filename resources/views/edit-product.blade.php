@@ -62,7 +62,7 @@
                     </select>
                 </div>
 
-                
+
                 <div class="form-group">
                     <label for="image">Product Image</label>
                     <input type="file" name="image" class="form-control">
@@ -71,19 +71,20 @@
                     @endif
                 </div>
 
-            
+
                 <div class="form-group">
                     <label>Product Sizes</label>
                     <div id="sizes-container">
-                        @foreach ($product->sizes as $size)
+                        @foreach ($product->sizes as $index => $size)
                             <div class="size-group d-flex mb-2">
-                                <input type="text" name="sizes[][size]" class="form-control mr-2" placeholder="Size"
-                                    value="{{ $size['size'] }}">
-                                <input type="number" name="sizes[][price]" class="form-control" placeholder="Price"
-                                    value="{{ $size['price'] }}">
+                                <input type="text" name="sizes[{{ $index }}][size]" class="form-control mr-2"
+                                    placeholder="Size" value="{{ $size['size'] }}">
+                                <input type="number" name="sizes[{{ $index }}][price]" class="form-control"
+                                    placeholder="Price" value="{{ $size['price'] }}">
                                 <button type="button" class="btn btn-danger remove-size ml-2">X</button>
                             </div>
                         @endforeach
+
                     </div>
                     <button type="button" class="btn btn-primary mt-2" id="add-size">Add Size</button>
                 </div>
@@ -96,16 +97,19 @@
     <!-- JavaScript for Dynamic Sizes -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            let sizeIndex = document.querySelectorAll('.size-group').length;
+
             document.getElementById('add-size').addEventListener('click', function() {
                 let sizeContainer = document.getElementById('sizes-container');
                 let newSize = document.createElement('div');
                 newSize.classList.add('size-group', 'd-flex', 'mb-2');
                 newSize.innerHTML = `
-                <input type="text" name="sizes[][size]" class="form-control mr-2" placeholder="Size">
-                <input type="number" name="sizes[][price]" class="form-control" placeholder="Price">
-                <button type="button" class="btn btn-danger remove-size ml-2">X</button>
-            `;
+            <input type="text" name="sizes[${sizeIndex}][size]" class="form-control mr-2" placeholder="Size">
+            <input type="number" name="sizes[${sizeIndex}][price]" class="form-control" placeholder="Price">
+            <button type="button" class="btn btn-danger remove-size ml-2">X</button>
+        `;
                 sizeContainer.appendChild(newSize);
+                sizeIndex++;
             });
 
             document.getElementById('sizes-container').addEventListener('click', function(event) {

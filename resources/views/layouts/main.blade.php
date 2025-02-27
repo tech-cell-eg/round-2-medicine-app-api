@@ -6,11 +6,12 @@
     <title>Medicine App</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets')}}/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="assets/css/ready.css">
-    <link rel="stylesheet" href="assets/css/demo.css">
+    <link rel="stylesheet" href="{{ asset('assets')}}/css/ready.css">
+    <link rel="stylesheet" href="{{ asset('assets')}}/css/demo.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -85,7 +86,7 @@
                                         </a>
                                         <a href="#">
                                             <div class="notif-img">
-                                                <img src="assets/img/profile2.jpg" alt="Img Profile">
+                                                <img src="{{ asset('assets')}}/img/profile2.jpg" alt="Img Profile">
                                             </div>
                                             <div class="notif-content">
                                                 <span class="block">
@@ -113,13 +114,13 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
-                                aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img"
+                                aria-expanded="false"> <img src="{{ asset('assets')}}/img/profile.jpg" alt="user-img"
                                     width="36" class="img-circle"><span>{{ auth()->user()->name }}</span></span>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li>
                                     <div class="user-box">
-                                        <div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
+                                        <div class="u-img"><img src="{{ asset('assets')}}/img/profile.jpg" alt="user"></div>
                                         <div class="u-text">
                                             <h4>{{ auth()->user()->name }}</h4>
                                             <p class="text-muted">{{ auth()->user()->email }}</p>
@@ -149,7 +150,7 @@
             <div class="scrollbar-inner sidebar-wrapper">
                 <div class="user">
                     <div class="photo">
-                        <img src="assets/img/profile.jpg">
+                        <img src="{{ asset('assets')}}/img/profile.jpg">
                     </div>
                     <div class="info">
                         <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -184,13 +185,15 @@
                         </a>
                     </li>
                     @endif
+                    @if (auth()->user()->hasPermissionTo('view_users'))
                     <li class="nav-item">
-                        <a href="forms.html">
+                        <a href="{{route('users.index')}}">
                             <i class="la la-user"></i>
                             <p>Users</p>
                             <span class="badge badge-count">50</span>
                         </a>
                     </li>
+                    @endif
 
                 </ul>
             </div>
@@ -258,19 +261,19 @@
         </div>
     </div>
 </body>
-<script src="assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="assets/js/core/popper.min.js"></script>
-<script src="assets/js/core/bootstrap.min.js"></script>
-<script src="assets/js/plugin/chartist/chartist.min.js"></script>
-<script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
-<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-<script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
-<script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
-<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
-<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-<script src="assets/js/ready.min.js"></script>
-<script src="assets/js/demo.js"></script>
+<script src="{{ asset('assets')}}/js/core/jquery.3.2.1.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="{{ asset('assets')}}/js/core/popper.min.js"></script>
+<script src="{{ asset('assets')}}/js/core/bootstrap.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/chartist/chartist.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/chart-circle/circles.min.js"></script>
+<script src="{{ asset('assets')}}/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="{{ asset('assets')}}/js/ready.min.js"></script>
+<script src="{{ asset('assets')}}/js/demo.js"></script>
 
 </html>
